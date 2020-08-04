@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+    <!-- 引入用于限制标签属性的js文件 -->
+    <script src="../js/prop-types.js"></script>
+    <script type='text/babel'>
+        // 定义组件
+        class Person extends React.Component{
+            // 向Person上添加propTypes属性,
+            static propTypes = {
+                // 定义要限制的值
+                name:PropTypes.string.isRequired,
+                sex:PropTypes.string,
+                age:PropTypes.number
+            }
+            // 设置默认值
+            static defaultProps = {
+			sex:'不男不女',
+			age:18
+		}
+
+            // 定义render
+            render(){
+                // 获取props中的属性值
+                const {name,age,sex,car} = this.props
+                return (
+                    <div>
+                        <ul>
+                            <h1>列表</h1>
+                            <li>姓名:{name}</li>
+                            <li>性别:{sex}</li>
+                            <li>年龄:{age}</li>
+                            <li>车:{car}</li>
+                        </ul>
+                        
+                    </div>
+                )
+            }
+        }
+
+        // 定义数据
+        let p = {
+            name:'zz',
+            // age:18,
+            // sex:'',
+            car:'领克'
+        }
+        // 渲染页面
+        ReactDOM.render(<Person {...p}/>,document.getElementById('test'))
+    </script>
+</body>
+
+</html>

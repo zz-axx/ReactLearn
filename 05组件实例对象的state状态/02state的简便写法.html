@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="test"></div>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+    <script type='text/babel'>
+        // 定义组件
+        class Whether extends React.Component{
+            // 通过赋值将设置Whether实例对象上的state
+            state = {
+                isHot:true
+            }
+
+            // 通过赋值将change放到Whether的实例对象上
+            // 并且要用箭头函数,因为箭头函数没有自己的this,只能向外寻找this,直到找到为止
+            change = () => {
+                
+                // 改变state中的isHot的值
+                // 获取isHot
+                let {isHot} = this.state
+               this.setState({isHot:!isHot})
+            }
+
+            // 定义render
+            render() {
+                return (
+                    <h1 onClick={this.change}>今天天气{this.state.isHot?'炎热':'寒冷'}</h1>
+                )
+            }
+        }
+
+        // 渲染页面
+        ReactDOM.render(<Whether/>,document.getElementById('test'))
+    </script>
+</body>
+</html>

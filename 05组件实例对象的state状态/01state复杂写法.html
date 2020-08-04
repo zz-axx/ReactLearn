@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="test"></div>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+    <script type='text/babel'>
+    // 创建组件
+    class Whether extends React.Component{
+        // 构造器方法
+        constructor(...args){
+            // 继承父类的属性
+            super(...args)
+            // 设置state状态,state必须为一个对象
+            this.state = {
+                isHot:true,
+            }
+            // 改变change的this指向,指向Whether的实例对象
+            this.change = this.change.bind(this)
+        }
+
+        // 定义change方法
+        change(){
+            // 获取isHot
+            let {isHot} = this.state
+            // state不能直接修改
+            this.setState({isHot:!isHot})
+        }
+
+        // 定义生命周期函数
+        render(){
+            return (
+                <h1 onClick={this.change}>今天天气{this.state.isHot?'炎热':'寒冷'}</h1>
+            )
+        }
+    }
+
+    // 渲染页面
+    ReactDOM.render(<Whether/>,document.getElementById('test'))
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+    <script type='text/babel'>
+        // 定义组件
+        class Show extends React.Component{
+            // 定义demo事件
+            demo = () => {
+                // 获取input中的内容
+                let result = this.refs.input.value
+                alert(result)
+            }
+
+            // 定义render
+            render(){
+                return (
+                    <div>
+                        <input ref='input' type="text" placeholder='请输入内容'/>
+                        <button onClick={this.demo}>点击弹出左侧内容</button>
+                    </div>
+                    
+                )
+            }
+        }
+
+        // 渲染组件
+        ReactDOM.render(<Show/>,document.getElementById('test'))
+
+    </script>
+</body>
+
+</html>
